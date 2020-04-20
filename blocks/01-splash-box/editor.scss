@@ -5,8 +5,13 @@
   height:auto;
   padding:0;
 }
-.splash-image .components-button.button-large {
-  margin: 50px auto 150px;
+.splash-image .components-button {
+    &.button-large {
+      margin: 50px auto 150px;
+    }
+    &.image-button {
+        width:100%;
+    }
 }
 .editor-styles-wrapper .wp-block-tastydigital-splash-box {
   h2 {
