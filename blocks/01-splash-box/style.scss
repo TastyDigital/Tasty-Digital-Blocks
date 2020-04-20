@@ -1,0 +1,29 @@
+.wp-block-tastydigital-splash-box {
+  position: relative;
+  > a {
+	display: block;
+
+  }
+  .overlay {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	padding: 20px;
+	height:88px;
+  }
+
+  h2 {
+	margin: 5px 0 0;
+	color:#FFF;
+	font-weight: 700;
+  }
+}
+.opacity-90 {
+  opacity: 0.9;
+}
+.splash-image {
+  text-align: center;
+  background-color: #F5F5F5;
+  min-width:100%;
+}
