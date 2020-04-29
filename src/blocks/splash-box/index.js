@@ -1,14 +1,9 @@
 /**
  * Internal block libraries
  */
-import './editor.scss';
-import './style.scss';
-
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
-const {
-	registerBlockType,
-} = wp.blocks;
+const { registerBlockType } = wp.blocks;
 
 const {
 	Button, Panel, PanelBody, PanelRow

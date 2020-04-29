@@ -1,68 +1,90 @@
+const defaultConfig = require( './node_modules/@wordpress/scripts/config/webpack.config.js' );
 const path = require( 'path' );
-const webpack = require( 'webpack' );
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const postcssPresetEnv = require( 'postcss-preset-env' );
+const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
+const IgnoreEmitPlugin = require( 'ignore-emit-webpack-plugin' );
 
-// Set different CSS extraction for editor only and common block styles
-const blocksCSSPlugin = new ExtractTextPlugin( {
-  filename: './assets/css/blocks.style.css',
-} );
-const editBlocksCSSPlugin = new ExtractTextPlugin( {
-  filename: './assets/css/blocks.editor.css',
-} );
-
-// Configuration for the ExtractTextPlugin.
-const extractConfig = {
-  use: [
-    { loader: 'raw-loader' },
-    {
-      loader: 'postcss-loader',
-      options: {
-        plugins: [ require( 'autoprefixer' ) ],
-      },
-    },
-    {
-      loader: 'sass-loader',
-      query: {
-        outputStyle:
-          'production' === process.env.NODE_ENV ? 'compressed' : 'nested',
-      },
-    },
-  ],
-};
-
+const production = process.env.NODE_ENV === '';
 
 module.exports = {
-  entry: {
-    './assets/js/editor.blocks' : './blocks/index.js',
-    './assets/js/frontend.blocks' : './blocks/frontend.js',
-  },
-  output: {
-    path: path.resolve( __dirname ),
-    filename: '[name].js',
-  },
-  watch: 'production' !== process.env.NODE_ENV,
-  devtool: 'cheap-eval-source-map',
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-      {
-        test: /style\.s?css$/,
-        use: blocksCSSPlugin.extract( extractConfig ),
-      },
-      {
-        test: /editor\.s?css$/,
-        use: editBlocksCSSPlugin.extract( extractConfig ),
-      },
-    ],
-  },
-  plugins: [
-    blocksCSSPlugin,
-    editBlocksCSSPlugin,
-  ],
+	...defaultConfig,
+	entry: {
+		index: path.resolve( process.cwd(), 'src', 'index.js' ),
+		style: path.resolve( process.cwd(), 'src', 'style.scss' ),
+		editor: path.resolve( process.cwd(), 'src', 'editor.scss' ),
+	},
+	optimization: {
+		...defaultConfig.optimization,
+		splitChunks: {
+			cacheGroups: {
+				editor: {
+					name: 'editor',
+					test: /editor\.(sc|sa|c)ss$/,
+					chunks: 'all',
+					enforce: true,
+				},
+				style: {
+					name: 'style',
+					test: /style\.(sc|sa|c)ss$/,
+					chunks: 'all',
+					enforce: true,
+				},
+				default: false,
+			},
+		},
+	},
+	module: {
+		...defaultConfig.module,
+		rules: [
+			...defaultConfig.module.rules,
+			{
+				test: /\.(sc|sa|c)ss$/,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+					},
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: ! production,
+						},
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							ident: 'postcss',
+							plugins: () => [
+								postcssPresetEnv( {
+									stage: 3,
+									features: {
+										'custom-media-queries': {
+											preserve: false,
+										},
+										'custom-properties': {
+											preserve: true,
+										},
+										'nesting-rules': true,
+									},
+								} ),
+							],
+						},
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: ! production,
+						},
+					},
+				],
+			},
+		],
+	},
+	plugins: [
+		...defaultConfig.plugins,
+		new MiniCssExtractPlugin( {
+			filename: '[name].css',
+		} ),
+		new IgnoreEmitPlugin( [ 'editor.js', 'style.js' ] ),
+	],
 };

@@ -1,8 +1,8 @@
 {
-    "name": "tastydigital/tastyglutenblocks",
-    "description": "Tasty Digital Custom Gutenberg Blocks Plugin for WP Packagist",
+    "name": "tastydigital/tasty-digital-blocks",
+    "description": "Tasty Digital Custom Glutenberg Blocks",
     "keywords": ["wordpress", "plugin", "gutenberg"],
-    "homepage": "https://bitbucket.org/tastydigital/tastyglutenblocks",
+    "homepage": "https://github.com/TastyDigital/Tasty-Digital-Blocks",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
 	"authors": [
