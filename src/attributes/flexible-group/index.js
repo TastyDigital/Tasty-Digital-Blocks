@@ -1,5 +1,5 @@
 
-wp.blocks.registerBlockStyle( allowedBlocks[0], {
+wp.blocks.registerBlockStyle( 'core/group', {
 	name: 'flexible-row',
 	label: __( 'Flexible Row')
 } );
