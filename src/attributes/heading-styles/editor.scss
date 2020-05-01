@@ -1,0 +1,40 @@
+.wp-block[data-type="core/heading"] {
+  .is-style-mega-title {
+	text-transform: uppercase;
+	font-weight: 800;
+	letter-spacing: -0.0481em;
+  }
+  h1.is-style-mega-title {
+	font-size:144px;
+  }
+  h2.is-style-mega-title {
+	font-size:104px;
+  }
+  h3.is-style-mega-title {
+	font-size:64px;
+  }
+  h4.is-style-mega-title {
+	font-size:44px;
+  }
+  h5.is-style-mega-title {
+	font-size:24px;
+  }
+  h6.is-style-mega-title {
+	font-size:14px;
+  }
+
+  @media (max-width: 575.98px) {
+	h1.is-style-mega-title {
+	  font-size:18vw;
+	}
+	h2.is-style-mega-title {
+	  font-size:18vw;
+	}
+	h3.is-style-mega-title {
+	  font-size:12vw;
+	}
+	h4.is-style-mega-title {
+	  font-size:8vw;
+	}
+  }
+}
