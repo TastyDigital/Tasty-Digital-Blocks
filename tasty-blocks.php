@@ -20,7 +20,7 @@ function tasty_blocks_editor_assets(){
 	wp_enqueue_script(
 		'tasty-blocks-js', // Handle.
 		$url . '/build/index.js',
-		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor' ]
+		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-block-editor' ]
 	);
 	// Styles.
 	wp_enqueue_style(
