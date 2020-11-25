@@ -18,8 +18,19 @@ const {
 export default registerBlockType( 'tastydigital/splash-box', {
 	title: __( 'Splash CTA'),
 	description: __( 'Big pic media, logo and link.'),
-	icon: 'welcome-view-site',
-	category: 'layout',
+	icon: 'cover-image',
+    category: 'layout',
+    styles: [
+        {
+            name: 'default',
+            label: __( 'Default' ),
+            isDefault: true
+        },
+        {
+            name: 'bordered',
+            label: __( 'Bordered' )
+        }
+    ],
 	attributes: {
 		title: {
 			type: 'string',
@@ -56,7 +67,7 @@ export default registerBlockType( 'tastydigital/splash-box', {
 			selector: 'img.logo-image',
 			attribute: 'alt',
 		},
-		overlayColor: {
+		bgColor: {
 			type: 'string',
 			default: '#002A3D'
 		},
@@ -65,17 +76,11 @@ export default registerBlockType( 'tastydigital/splash-box', {
 			source: 'attribute',
 			attribute: 'href',
 			selector: 'a',
-		},
-		titleText: {
-			type: 'string',
-			source: 'attribute',
-			attribute: 'title',
-			selector: 'a',
 		}
 	},
 	example: {
 		attributes: {
-			title: __( 'RoomLab Pro', 'tastydigital' ),
+			title: __( 'Tasty Glutenberg', 'tastydigital' ),
 			mediaURL:
 				'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2ChocolateChipCookies.jpg/320px-2ChocolateChipCookies.jpg',
 		},
@@ -87,7 +92,7 @@ export default registerBlockType( 'tastydigital/splash-box', {
 	edit: ( props ) => {
 		const {
 			className,
-			attributes: { title, mediaID, mediaURL, mediaALT, logoID, logoURL, logoALT, overlayColor, url, titleText },
+			attributes: { title, mediaID, mediaURL, mediaALT, logoID, logoURL, logoALT, bgColor, url },
 			setAttributes,
 		} = props;
 		const onChangeTitle = ( value ) => {
@@ -95,7 +100,7 @@ export default registerBlockType( 'tastydigital/splash-box', {
 		};
 
 		const onSelectMedia = ( media ) => {
-			let thisURL = media.sizes['homepage-splash'].url ? media.sizes['homepage-splash'].url : media.url;
+			let thisURL = (typeof media.sizes['homepage-splash'] !== 'undefined') ? media.sizes['homepage-splash'].url : media.url;
 			setAttributes( {
 				mediaURL: thisURL,
 				mediaID: media.id,
@@ -104,16 +109,21 @@ export default registerBlockType( 'tastydigital/splash-box', {
 		};
 
 		const onSelectLogo = ( media ) => {
-			let thisURL = media.sizes['logo-list'].url ? media.sizes['logo-list'].url : media.url;
+            console.log(media);
+            let thisURL = media.url;
+            if(typeof media.sizes['logotype'] !== 'undefined') {
+                thisURL = media.sizes['logotype'].url;
+            }
+
 			setAttributes( {
 				logoURL: thisURL,
 				logoID: media.id,
 				logoALT: media.alt
 			} );
 		};
-		const onOverlayColorChange = (newColor) => {
+		const onBackgroundColorChange = (newColor) => {
 			setAttributes({
-				overlayColor: newColor
+				bgColor: newColor
 
 			})
 		};
@@ -124,11 +134,11 @@ export default registerBlockType( 'tastydigital/splash-box', {
 				<InspectorControls>
 					<Panel>
 					<PanelBody title="Splash CTA Block Settings" initialOpen={ true }>
-						<PanelRow>{ __("Choose overlay colour")}</PanelRow>
+						<PanelRow>{ __("Choose background colour")}</PanelRow>
 						<PanelRow>
 							<ColorPalette
-								value={overlayColor}
-								onChange={onOverlayColorChange}
+								value={bgColor}
+								onChange={onBackgroundColorChange}
 							/>
 						</PanelRow>
 						<PanelRow>{ __("Choose link destination")}</PanelRow>
@@ -146,19 +156,38 @@ export default registerBlockType( 'tastydigital/splash-box', {
 					</Panel>
 				</InspectorControls>
 				<div className={ className }>
-					<div className="overlay" style={{backgroundColor: overlayColor+'e9'}}>
-						{ !logoURL && (
-							<RichText
-							tagName="h2"
-							placeholder={ __(
-								'Call to action text',
-								'tastydigital'
-							) }
-							value={ title }
-							onChange={ onChangeTitle }
-							allowedFormats={ [] }
-						/>
-						)}
+                    <div className="splash-holder">
+                        <div className="splash-image">
+                            <MediaUpload
+                                onSelect={ onSelectMedia }
+                                allowedTypes="image"
+                                value={ mediaID }
+                                render={ ( { open } ) => (
+                                    <Button
+                                        className={
+                                            mediaID
+                                                ? 'image-button media-button'
+                                                : 'button button-large'
+                                        }
+                                        onClick={ open }
+                                    >
+                                        { ! mediaID ? (
+                                            __( 'Upload Image', 'tastydigital' )
+                                        ) : (
+                                            <img
+                                                id={ 'image-' + mediaID }
+                                                src={ mediaURL }
+                                                alt={ mediaALT }
+                                            />
+                                        ) }
+                                    </Button>
+                                ) }
+                            />
+                        </div>
+                    </div>
+					<div className="overlay" style={{backgroundColor: bgColor+'e9'}}>
+						
+                        <div className="splash-logo">
 						<MediaUpload
 							onSelect={ onSelectLogo }
 							allowedTypes="image"
@@ -184,32 +213,16 @@ export default registerBlockType( 'tastydigital/splash-box', {
 								</Button>
 							) }
 						/>
-					</div>
-					<div className="splash-image">
-						<MediaUpload
-							onSelect={ onSelectMedia }
-							allowedTypes="image"
-							value={ mediaID }
-							render={ ( { open } ) => (
-								<Button
-									className={
-										mediaID
-											? 'image-button media-button'
-											: 'button button-large'
-									}
-									onClick={ open }
-								>
-									{ ! mediaID ? (
-										__( 'Upload Image', 'tastydigital' )
-									) : (
-										<img
-											id={ 'image-' + mediaID }
-											src={ mediaURL }
-											alt={ mediaALT }
-										/>
-									) }
-								</Button>
+                        </div>
+                        <RichText
+							tagName="h2"
+							placeholder={ __(
+								'Call to action text',
+								'tastydigital'
 							) }
+							value={ title }
+							onChange={ onChangeTitle }
+							allowedFormats={ [] }
 						/>
 					</div>
 				</div>
@@ -219,32 +232,33 @@ export default registerBlockType( 'tastydigital/splash-box', {
 	save: ( props ) => {
 		const {
 			className,
-			attributes: { title, mediaID, mediaURL, mediaALT, logoID, logoURL, logoALT, overlayColor, url, titleText },
+			attributes: { title, mediaID, mediaURL, mediaALT, logoID, logoURL, logoALT, bgColor, url },
 		} = props;
 		return (
-			<div className={ className }>
-				<a href={ url } title={ titleText }>
-					<div className="overlay opacity-90" style={{backgroundColor: overlayColor}}>
-					</div>
+			<div className={ className } style={{backgroundColor: bgColor}}>
+				<a href={ url }>
+                    <div className="splash-holder">
+                        { mediaURL && (
+                            <img
+                                className="splash-image"
+                                src={ mediaURL }
+                                alt={ mediaALT }
+                            />
+                        ) }
+                    </div>
 					<div className="overlay">
-						{ !logoURL && (
+                        { logoURL && (
+                            <div className="splash-logo">
+                            <img
+                                className="logo-image"
+                                src={ logoURL }
+                                alt={ logoALT }
+                            />
+                            </div>
+                        ) }
 						<RichText.Content tagName="h2" value={ title } />
-						)}
-						{ logoURL && (
-						<img
-							className="logo-image"
-							src={ logoURL }
-							alt={ logoALT }
-						/>
-						) }
+                        <div class="arrow-right"></div>
 					</div>
-					{ mediaURL && (
-						<img
-							className="splash-image"
-							src={ mediaURL }
-							alt={ mediaALT }
-						/>
-					) }
 				</a>
 
 			</div>

@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Tasty Digital Blocks
- * Plugin URI: https://github.com/phpbits/my-custom-block
- * Description: Custom Glutenberg blocks
- * Version: 1.0
+ * Plugin URI: https://github.com/tastyDigital/Tasty-Digital-Blocks
+ * Description: Tasty Glutenberg blocks
+ * Version: 1.1
  * Author: Toby Trembath
  * Author URI: https://tastydigital.com
  *
@@ -13,6 +13,13 @@
  */
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
+
+
+function gluten_add_new_image_size() {
+    add_image_size( 'logotype', 1200, 36, false );
+}
+add_action( 'after_setup_theme', 'gluten_add_new_image_size' );
+
 function tasty_blocks_editor_assets(){
 	$url = untrailingslashit( plugin_dir_url( __FILE__ ) );
 
