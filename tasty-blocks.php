@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Tasty Digital Blocks
- * Plugin URI: https://github.com/phpbits/my-custom-block
- * Description: Custom Glutenberg blocks
- * Version: 1.0
+ * Plugin URI: https://github.com/tastyDigital/Tasty-Digital-Blocks
+ * Description: Tasty Glutenberg blocks
+ * Version: 1.1
  * Author: Toby Trembath
  * Author URI: https://tastydigital.com
  *

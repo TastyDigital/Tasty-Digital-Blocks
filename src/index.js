@@ -3,6 +3,7 @@
  */
 // import './blocks/container';
 import './blocks/splash-box';
+import './blocks/splash-box-overlay';
 
 import './attributes/visible-on-mobile';
 import './attributes/constrain-inner-container';

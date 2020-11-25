@@ -15,22 +15,11 @@ const {
 
 
 
-export default registerBlockType( 'tastydigital/splash-box', {
-	title: __( 'Splash CTA'),
+export default registerBlockType( 'tastydigital/splash-box-overlay', {
+	title: __( 'Splash CTA with Overlay'),
 	description: __( 'Big pic media, logo and link.'),
-	icon: 'cover-image',
-    category: 'layout',
-    styles: [
-        {
-            name: 'default',
-            label: __( 'Default' ),
-            isDefault: true
-        },
-        {
-            name: 'bordered',
-            label: __( 'Bordered' )
-        }
-    ],
+	icon: 'welcome-view-site',
+	category: 'layout',
 	attributes: {
 		title: {
 			type: 'string',
@@ -67,7 +56,7 @@ export default registerBlockType( 'tastydigital/splash-box', {
 			selector: 'img.logo-image',
 			attribute: 'alt',
 		},
-		bgColor: {
+		overlayColor: {
 			type: 'string',
 			default: '#002A3D'
 		},
@@ -76,11 +65,17 @@ export default registerBlockType( 'tastydigital/splash-box', {
 			source: 'attribute',
 			attribute: 'href',
 			selector: 'a',
+		},
+		titleText: {
+			type: 'string',
+			source: 'attribute',
+			attribute: 'title',
+			selector: 'a',
 		}
 	},
 	example: {
 		attributes: {
-			title: __( 'Tasty Glutenberg', 'tastydigital' ),
+			title: __( 'Tasty Gluten', 'tastydigital' ),
 			mediaURL:
 				'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2ChocolateChipCookies.jpg/320px-2ChocolateChipCookies.jpg',
 		},
@@ -92,7 +87,7 @@ export default registerBlockType( 'tastydigital/splash-box', {
 	edit: ( props ) => {
 		const {
 			className,
-			attributes: { title, mediaID, mediaURL, mediaALT, logoID, logoURL, logoALT, bgColor, url },
+			attributes: { title, mediaID, mediaURL, mediaALT, logoID, logoURL, logoALT, overlayColor, url, titleText },
 			setAttributes,
 		} = props;
 		const onChangeTitle = ( value ) => {
@@ -100,7 +95,7 @@ export default registerBlockType( 'tastydigital/splash-box', {
 		};
 
 		const onSelectMedia = ( media ) => {
-			let thisURL = (typeof media.sizes['homepage-splash'].url !== 'undefined') ? media.sizes['homepage-splash'].url : media.url;
+			let thisURL = media.sizes['homepage-splash'].url ? media.sizes['homepage-splash'].url : media.url;
 			setAttributes( {
 				mediaURL: thisURL,
 				mediaID: media.id,
@@ -109,17 +104,16 @@ export default registerBlockType( 'tastydigital/splash-box', {
 		};
 
 		const onSelectLogo = ( media ) => {
-            let thisURL = (typeof media.sizes['logo-list'].url !== 'undefined') ? media.sizes['logo-list'].url : media.url;
-            console.log(media);
+			let thisURL = media.sizes['logo-list'].url ? media.sizes['logo-list'].url : media.url;
 			setAttributes( {
 				logoURL: thisURL,
 				logoID: media.id,
 				logoALT: media.alt
 			} );
 		};
-		const onBackgroundColorChange = (newColor) => {
+		const onOverlayColorChange = (newColor) => {
 			setAttributes({
-				bgColor: newColor
+				overlayColor: newColor
 
 			})
 		};
@@ -129,12 +123,12 @@ export default registerBlockType( 'tastydigital/splash-box', {
 
 				<InspectorControls>
 					<Panel>
-					<PanelBody title="Splash CTA Block Settings" initialOpen={ true }>
-						<PanelRow>{ __("Choose background colour")}</PanelRow>
+					<PanelBody title="Splash CTA with Overlay Block Settings" initialOpen={ true }>
+						<PanelRow>{ __("Choose overlay colour")}</PanelRow>
 						<PanelRow>
 							<ColorPalette
-								value={bgColor}
-								onChange={onBackgroundColorChange}
+								value={overlayColor}
+								onChange={onOverlayColorChange}
 							/>
 						</PanelRow>
 						<PanelRow>{ __("Choose link destination")}</PanelRow>
@@ -152,9 +146,19 @@ export default registerBlockType( 'tastydigital/splash-box', {
 					</Panel>
 				</InspectorControls>
 				<div className={ className }>
-					<div className="overlay" style={{backgroundColor: bgColor+'e9'}}>
-						
-                        <div className="splash-logo">
+					<div className="overlay" style={{backgroundColor: overlayColor+'e9'}}>
+						{ !logoURL && (
+							<RichText
+							tagName="h2"
+							placeholder={ __(
+								'Call to action text',
+								'tastydigital'
+							) }
+							value={ title }
+							onChange={ onChangeTitle }
+							allowedFormats={ [] }
+						/>
+						)}
 						<MediaUpload
 							onSelect={ onSelectLogo }
 							allowedTypes="image"
@@ -179,17 +183,6 @@ export default registerBlockType( 'tastydigital/splash-box', {
 									) }
 								</Button>
 							) }
-						/>
-                        </div>
-                        <RichText
-							tagName="h2"
-							placeholder={ __(
-								'Call to action text',
-								'tastydigital'
-							) }
-							value={ title }
-							onChange={ onChangeTitle }
-							allowedFormats={ [] }
 						/>
 					</div>
 					<div className="splash-image">
@@ -226,24 +219,24 @@ export default registerBlockType( 'tastydigital/splash-box', {
 	save: ( props ) => {
 		const {
 			className,
-			attributes: { title, mediaID, mediaURL, mediaALT, logoID, logoURL, logoALT, bgColor, url },
+			attributes: { title, mediaID, mediaURL, mediaALT, logoID, logoURL, logoALT, overlayColor, url, titleText },
 		} = props;
 		return (
 			<div className={ className }>
-				<a href={ url }>
-					<div className="overlay opacity-90" style={{backgroundColor: bgColor}}>
+				<a href={ url } title={ titleText }>
+					<div className="overlay opacity-90" style={{backgroundColor: overlayColor}}>
 					</div>
 					<div className="overlay">
-                        { logoURL && (
-                            <div className="splash-logo">
-                            <img
-                                className="logo-image"
-                                src={ logoURL }
-                                alt={ logoALT }
-                            />
-                            </div>
-                        ) }
+						{ !logoURL && (
 						<RichText.Content tagName="h2" value={ title } />
+						)}
+						{ logoURL && (
+						<img
+							className="logo-image"
+							src={ logoURL }
+							alt={ logoALT }
+						/>
+						) }
 					</div>
 					{ mediaURL && (
 						<img

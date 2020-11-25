@@ -1,11 +1,905 @@
-!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=7)}([function(e,t){!function(){e.exports=this.wp.element}()},function(e,t,n){var r;
-/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/!function(){"use strict";var n=function(){function e(){}function t(e,t){for(var n=t.length,r=0;r<n;++r)o(e,t[r])}e.prototype=Object.create(null);var n={}.hasOwnProperty;var r=/\s+/;function o(e,o){if(o){var a=typeof o;"string"===a?function(e,t){for(var n=t.split(r),o=n.length,a=0;a<o;++a)e[n[a]]=!0}(e,o):Array.isArray(o)?t(e,o):"object"===a?function(e,t){for(var r in t)n.call(t,r)&&(e[r]=!!t[r])}(e,o):"number"===a&&function(e,t){e[t]=!0}(e,o)}}return function(){for(var n=arguments.length,r=Array(n),o=0;o<n;o++)r[o]=arguments[o];var a=new e;t(a,r);var l=[];for(var i in a)a[i]&&l.push(i);return l.join(" ")}}();e.exports?(n.default=n,e.exports=n):void 0===(r=function(){return n}.apply(t,[]))||(e.exports=r)}()},function(e,t,n){var r;
-/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/!function(){"use strict";var n={}.hasOwnProperty;function o(){for(var e=[],t=0;t<arguments.length;t++){var r=arguments[t];if(r){var a=typeof r;if("string"===a||"number"===a)e.push(r);else if(Array.isArray(r)&&r.length){var l=o.apply(null,r);l&&e.push(l)}else if("object"===a)for(var i in r)n.call(r,i)&&r[i]&&e.push(i)}}return e.join(" ")}e.exports?(o.default=o,e.exports=o):void 0===(r=function(){return o}.apply(t,[]))||(e.exports=r)}()},function(e,t){var n=wp.i18n.__;wp.blocks.registerBlockStyle("core/group",{name:"flexible-row",label:n("Flexible Row")})},function(e,t){var n=wp.i18n.__;wp.blocks.registerBlockStyle("core/heading",{name:"mega-title",label:n("Mega Title")})},,,function(e,t,n){"use strict";n.r(t);var r=n(0),o=wp.i18n.__,a=wp.element.Fragment,l=wp.blocks.registerBlockType,i=wp.components,c=i.Button,s=i.Panel,u=i.PanelBody,m=i.PanelRow,p=wp.blockEditor,b=p.RichText,d=p.InspectorControls,g=p.MediaUpload,f=p.ColorPalette,v=p.URLInput,y=(l("tastydigital/splash-box",{title:o("Splash CTA"),description:o("Big pic media, logo and link."),icon:"welcome-view-site",category:"layout",attributes:{title:{type:"string",source:"text",selector:"h2"},mediaID:{type:"number"},mediaURL:{type:"string",source:"attribute",selector:"img.splash-image",attribute:"src"},mediaALT:{type:"string",source:"attribute",selector:"img.splash-image",attribute:"alt"},logoID:{type:"number"},logoURL:{type:"string",source:"attribute",selector:"img.logo-image",attribute:"src"},logoALT:{type:"string",source:"attribute",selector:"img.logo-image",attribute:"alt"},overlayColor:{type:"string",default:"#002A3D"},url:{type:"string",source:"attribute",attribute:"href",selector:"a"},titleText:{type:"string",source:"attribute",attribute:"title",selector:"a"}},example:{attributes:{title:o("RoomLab Pro","tastydigital"),mediaURL:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2ChocolateChipCookies.jpg/320px-2ChocolateChipCookies.jpg"}},supports:{align:["wide","full"],html:!1},edit:function(e){var t=e.className,n=e.attributes,l=n.title,i=n.mediaID,p=n.mediaURL,y=n.mediaALT,h=n.logoID,O=n.logoURL,j=n.logoALT,C=n.overlayColor,w=n.url,E=(n.titleText,e.setAttributes);return Object(r.createElement)(a,null,Object(r.createElement)(d,null,Object(r.createElement)(s,null,Object(r.createElement)(u,{title:"Splash CTA Block Settings",initialOpen:!0},Object(r.createElement)(m,null,o("Choose overlay colour")),Object(r.createElement)(m,null,Object(r.createElement)(f,{value:C,onChange:function(e){E({overlayColor:e})}})),Object(r.createElement)(m,null,o("Choose link destination")),Object(r.createElement)(m,null,Object(r.createElement)(v,{className:"url-input",value:w,onChange:function(e,t){return E({url:e,titleText:t&&t.title||"Click here"})}}))))),Object(r.createElement)("div",{className:t},Object(r.createElement)("div",{className:"overlay",style:{backgroundColor:C+"e9"}},!O&&Object(r.createElement)(b,{tagName:"h2",placeholder:o("Call to action text","tastydigital"),value:l,onChange:function(e){E({title:e})},allowedFormats:[]}),Object(r.createElement)(g,{onSelect:function(e){var t=e.sizes["logo-list"].url?e.sizes["logo-list"].url:e.url;E({logoURL:t,logoID:e.id,logoALT:e.alt})},allowedTypes:"image",value:h,render:function(e){var t=e.open;return Object(r.createElement)(c,{className:h?"image-button logo-button":"button button-large",onClick:t},h?Object(r.createElement)("img",{id:"image-"+h,src:O,alt:j}):o("Upload Logo","tastydigital"))}})),Object(r.createElement)("div",{className:"splash-image"},Object(r.createElement)(g,{onSelect:function(e){var t=e.sizes["homepage-splash"].url?e.sizes["homepage-splash"].url:e.url;E({mediaURL:t,mediaID:e.id,mediaALT:e.alt})},allowedTypes:"image",value:i,render:function(e){var t=e.open;return Object(r.createElement)(c,{className:i?"image-button media-button":"button button-large",onClick:t},i?Object(r.createElement)("img",{id:"image-"+i,src:p,alt:y}):o("Upload Image","tastydigital"))}}))))},save:function(e){var t=e.className,n=e.attributes,o=n.title,a=(n.mediaID,n.mediaURL),l=n.mediaALT,i=(n.logoID,n.logoURL),c=n.logoALT,s=n.overlayColor,u=n.url,m=n.titleText;return Object(r.createElement)("div",{className:t},Object(r.createElement)("a",{href:u,title:m},Object(r.createElement)("div",{className:"overlay opacity-90",style:{backgroundColor:s}}),Object(r.createElement)("div",{className:"overlay"},!i&&Object(r.createElement)(b.Content,{tagName:"h2",value:o}),i&&Object(r.createElement)("img",{className:"logo-image",src:i,alt:c})),a&&Object(r.createElement)("img",{className:"splash-image",src:a,alt:l})))}}),n(2)),h=n.n(y),O=wp.i18n.__,j=wp.hooks.addFilter,C=wp.element.Fragment,w=wp.blockEditor.InspectorAdvancedControls,E=wp.compose.createHigherOrderComponent,k=wp.components.ToggleControl,x=["core/paragraph","core/heading"];var T=E((function(e){return function(t){var n=t.name,o=t.attributes,a=t.setAttributes,l=t.isSelected,i=o.visibleOnMobile;return Object(r.createElement)(C,null,Object(r.createElement)(e,t),l&&x.includes(n)&&Object(r.createElement)(w,null,Object(r.createElement)(k,{label:O("Mobile Devices Visibity"),checked:!!i,onChange:function(){return a({visibleOnMobile:!i})},help:O(i?"Showing on mobile devices.":"Hidden on mobile devices.")})))}}),"withAdvancedControls");j("blocks.registerBlockType","tasty-digital/custom-attributes",(function(e){return void 0!==e.attributes&&x.includes(e.name)&&(e.attributes=Object.assign(e.attributes,{visibleOnMobile:{type:"boolean",default:!0}})),e})),j("editor.BlockEdit","tasty-digital/custom-advanced-control",T),j("blocks.getSaveContent.extraProps","tasty-digital/applyExtraClass",(function(e,t,n){var r=n.visibleOnMobile;return void 0!==r&&!r&&x.includes(t.name)&&(e.className=h()(e.className,"mobile-hidden")),e}));var A=n(1),L=n.n(A),N=wp.i18n.__,I=wp.hooks.addFilter,S=wp.element.Fragment,_=wp.blockEditor.InspectorAdvancedControls,R=wp.compose.createHigherOrderComponent,P=wp.components.ToggleControl,U=["core/group"];var B=R((function(e){return function(t){var n=t.name,o=t.attributes,a=t.setAttributes,l=t.isSelected,i=o.constrainInnerContainer,c=o.className;return Object(r.createElement)(S,null,Object(r.createElement)(e,t),l&&U.includes(n)&&Object(r.createElement)(_,null,Object(r.createElement)(P,{label:N("Constrain Inner Container"),checked:!!i,onChange:function(){return a({className:L()(c,{"constrain-content":!i}),constrainInnerContainer:!i})},help:N(i?"Restrict width of content area.":"Content fills background area.")})))}}),"withAdvancedControls");I("blocks.registerBlockType","tasty-digital/custom-attributes",(function(e){return void 0!==e.attributes&&U.includes(e.name)&&(e.attributes=Object.assign(e.attributes,{constrainInnerContainer:{type:"boolean",default:!1}})),e})),I("editor.BlockEdit","tasty-digital/custom-advanced-control",B);n(3),n(4)}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./node_modules/classnames/dedupe.js":
+/*!*******************************************!*\
+  !*** ./node_modules/classnames/dedupe.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/source-map-loader/index.js):\nError: ENOENT: no such file or directory, open '/Users/toby/Sites/WP_Packages/tasty-digital-blocks/node_modules/classnames/dedupe.js'");
+
+/***/ }),
+
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/source-map-loader/index.js):\nError: ENOENT: no such file or directory, open '/Users/toby/Sites/WP_Packages/tasty-digital-blocks/node_modules/classnames/index.js'");
+
+/***/ }),
+
+/***/ "./src/attributes/constrain-inner-container/index.js":
+/*!***********************************************************!*\
+  !*** ./src/attributes/constrain-inner-container/index.js ***!
+  \***********************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames_dedupe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames/dedupe */ "./node_modules/classnames/dedupe.js");
+/* harmony import */ var classnames_dedupe__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames_dedupe__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/**
+ * External Dependencies
+ */
+
+/**
+ * WordPress Dependencies
+ */
+
+var __ = wp.i18n.__;
+var addFilter = wp.hooks.addFilter;
+var Fragment = wp.element.Fragment;
+var InspectorAdvancedControls = wp.blockEditor.InspectorAdvancedControls;
+var createHigherOrderComponent = wp.compose.createHigherOrderComponent;
+var ToggleControl = wp.components.ToggleControl; //restrict to specific block names
+
+var allowedBlocks = ['core/group'];
+/**
+ * Add custom attribute for constrainInnerContainer.
+ *
+ * @param {Object} settings Settings for the block.
+ *
+ * @return {Object} settings Modified settings.
+ */
+
+function addAttributes(settings) {
+  //check if object exists for old Gutenberg version compatibility
+  //add allowedBlocks restriction
+  if (typeof settings.attributes !== 'undefined' && allowedBlocks.includes(settings.name)) {
+    settings.attributes = Object.assign(settings.attributes, {
+      constrainInnerContainer: {
+        type: 'boolean',
+        default: false
+      }
+    });
+  }
+
+  return settings;
+}
+/**
+ * Add constrainInnerContainer controls on Advanced Block Panel.
+ *
+ * @param {function} BlockEdit Block edit component.
+ *
+ * @return {function} BlockEdit Modified block edit component.
+ */
+
+
+var withAdvancedControls = createHigherOrderComponent(function (BlockEdit) {
+  return function (props) {
+    var name = props.name,
+        attributes = props.attributes,
+        setAttributes = props.setAttributes,
+        isSelected = props.isSelected;
+    var constrainInnerContainer = attributes.constrainInnerContainer,
+        className = attributes.className;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Fragment, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockEdit, props), isSelected && allowedBlocks.includes(name) && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(InspectorAdvancedControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ToggleControl, {
+      label: __('Constrain Inner Container'),
+      checked: !!constrainInnerContainer,
+      onChange: function onChange() {
+        return setAttributes({
+          className: classnames_dedupe__WEBPACK_IMPORTED_MODULE_1___default()(className, {
+            'constrain-content': !constrainInnerContainer
+          }),
+          constrainInnerContainer: !constrainInnerContainer
+        });
+      },
+      help: !!constrainInnerContainer ? __('Restrict width of content area.') : __('Content fills background area.')
+    })));
+  };
+}, 'withAdvancedControls');
+/**
+ * Add custom element class in save element.
+ *
+ * @param {Object} extraProps     Block element.
+ * @param {Object} blockType      Blocks object.
+ * @param {Object} attributes     Blocks attributes.
+ *
+ * @return {Object} extraProps Modified block element.
+ */
+
+function applyExtraClass(extraProps, blockType, attributes) {
+  var constrainInnerContainer = attributes.constrainInnerContainer;
+
+  if (typeof constrainInnerContainer !== 'undefined' && constrainInnerContainer && allowedBlocks.includes(blockType.name)) {
+    extraProps.className = classnames_dedupe__WEBPACK_IMPORTED_MODULE_1___default()(extraProps.className, 'constrain-content');
+  }
+
+  return extraProps;
+} //add filters
+
+
+addFilter('blocks.registerBlockType', 'tasty-digital/custom-attributes', addAttributes);
+addFilter('editor.BlockEdit', 'tasty-digital/custom-advanced-control', withAdvancedControls); //
+// addFilter(
+// 	'blocks.getSaveContent.extraProps',
+// 	'tasty-digital/applyExtraClass',
+// 	applyExtraClass
+// );
+
+/***/ }),
+
+/***/ "./src/attributes/flexible-group/index.js":
+/*!************************************************!*\
+  !*** ./src/attributes/flexible-group/index.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var __ = wp.i18n.__;
+wp.blocks.registerBlockStyle('core/group', {
+  name: 'flexible-row',
+  label: __('Flexible Row')
+});
+
+/***/ }),
+
+/***/ "./src/attributes/heading-styles/index.js":
+/*!************************************************!*\
+  !*** ./src/attributes/heading-styles/index.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var __ = wp.i18n.__;
+wp.blocks.registerBlockStyle('core/heading', {
+  name: 'mega-title',
+  label: __('Mega Title')
+});
+
+/***/ }),
+
+/***/ "./src/attributes/visible-on-mobile/index.js":
+/*!***************************************************!*\
+  !*** ./src/attributes/visible-on-mobile/index.js ***!
+  \***************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/**
+ * External Dependencies
+ */
+
+/**
+ * WordPress Dependencies
+ */
+
+var __ = wp.i18n.__;
+var addFilter = wp.hooks.addFilter;
+var Fragment = wp.element.Fragment;
+var InspectorAdvancedControls = wp.blockEditor.InspectorAdvancedControls;
+var createHigherOrderComponent = wp.compose.createHigherOrderComponent;
+var ToggleControl = wp.components.ToggleControl; //restrict to specific block names
+
+var allowedBlocks = ['core/paragraph', 'core/heading'];
+/**
+ * Add custom attribute for mobile visibility.
+ *
+ * @param {Object} settings Settings for the block.
+ *
+ * @return {Object} settings Modified settings.
+ */
+
+function addAttributes(settings) {
+  //check if object exists for old Gutenberg version compatibility
+  //add allowedBlocks restriction
+  if (typeof settings.attributes !== 'undefined' && allowedBlocks.includes(settings.name)) {
+    settings.attributes = Object.assign(settings.attributes, {
+      visibleOnMobile: {
+        type: 'boolean',
+        default: true
+      }
+    });
+  }
+
+  return settings;
+}
+/**
+ * Add mobile visibility controls on Advanced Block Panel.
+ *
+ * @param {function} BlockEdit Block edit component.
+ *
+ * @return {function} BlockEdit Modified block edit component.
+ */
+
+
+var withAdvancedControls = createHigherOrderComponent(function (BlockEdit) {
+  return function (props) {
+    var name = props.name,
+        attributes = props.attributes,
+        setAttributes = props.setAttributes,
+        isSelected = props.isSelected;
+    var visibleOnMobile = attributes.visibleOnMobile;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Fragment, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockEdit, props), isSelected && allowedBlocks.includes(name) && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(InspectorAdvancedControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ToggleControl, {
+      label: __('Mobile Devices Visibity'),
+      checked: !!visibleOnMobile,
+      onChange: function onChange() {
+        return setAttributes({
+          visibleOnMobile: !visibleOnMobile
+        });
+      },
+      help: !!visibleOnMobile ? __('Showing on mobile devices.') : __('Hidden on mobile devices.')
+    })));
+  };
+}, 'withAdvancedControls');
+/**
+ * Add custom element class in save element.
+ *
+ * @param {Object} extraProps     Block element.
+ * @param {Object} blockType      Blocks object.
+ * @param {Object} attributes     Blocks attributes.
+ *
+ * @return {Object} extraProps Modified block element.
+ */
+
+function applyExtraClass(extraProps, blockType, attributes) {
+  var visibleOnMobile = attributes.visibleOnMobile;
+
+  if (typeof visibleOnMobile !== 'undefined' && !visibleOnMobile && allowedBlocks.includes(blockType.name)) {
+    extraProps.className = classnames__WEBPACK_IMPORTED_MODULE_1___default()(extraProps.className, 'mobile-hidden');
+  }
+
+  return extraProps;
+} //add filters
+
+
+addFilter('blocks.registerBlockType', 'tasty-digital/custom-attributes', addAttributes);
+addFilter('editor.BlockEdit', 'tasty-digital/custom-advanced-control', withAdvancedControls);
+addFilter('blocks.getSaveContent.extraProps', 'tasty-digital/applyExtraClass', applyExtraClass);
+
+/***/ }),
+
+/***/ "./src/blocks/splash-box-overlay/index.js":
+/*!************************************************!*\
+  !*** ./src/blocks/splash-box-overlay/index.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+ * Internal block libraries
+ */
+var __ = wp.i18n.__;
+var Fragment = wp.element.Fragment;
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$components = wp.components,
+    Button = _wp$components.Button,
+    Panel = _wp$components.Panel,
+    PanelBody = _wp$components.PanelBody,
+    PanelRow = _wp$components.PanelRow;
+var _wp$blockEditor = wp.blockEditor,
+    RichText = _wp$blockEditor.RichText,
+    InspectorControls = _wp$blockEditor.InspectorControls,
+    MediaUpload = _wp$blockEditor.MediaUpload,
+    ColorPalette = _wp$blockEditor.ColorPalette,
+    URLInput = _wp$blockEditor.URLInput;
+/* harmony default export */ __webpack_exports__["default"] = (registerBlockType('tastydigital/splash-box-overlay', {
+  title: __('Splash CTA with Overlay'),
+  description: __('Big pic media, logo and link.'),
+  icon: 'welcome-view-site',
+  category: 'layout',
+  attributes: {
+    title: {
+      type: 'string',
+      source: 'text',
+      selector: 'h2'
+    },
+    mediaID: {
+      type: 'number'
+    },
+    mediaURL: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img.splash-image',
+      attribute: 'src'
+    },
+    mediaALT: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img.splash-image',
+      attribute: 'alt'
+    },
+    logoID: {
+      type: 'number'
+    },
+    logoURL: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img.logo-image',
+      attribute: 'src'
+    },
+    logoALT: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img.logo-image',
+      attribute: 'alt'
+    },
+    overlayColor: {
+      type: 'string',
+      default: '#002A3D'
+    },
+    url: {
+      type: 'string',
+      source: 'attribute',
+      attribute: 'href',
+      selector: 'a'
+    },
+    titleText: {
+      type: 'string',
+      source: 'attribute',
+      attribute: 'title',
+      selector: 'a'
+    }
+  },
+  example: {
+    attributes: {
+      title: __('Tasty Gluten', 'tastydigital'),
+      mediaURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2ChocolateChipCookies.jpg/320px-2ChocolateChipCookies.jpg'
+    }
+  },
+  supports: {
+    align: ['wide', 'full'],
+    html: false
+  },
+  edit: function edit(props) {
+    var className = props.className,
+        _props$attributes = props.attributes,
+        title = _props$attributes.title,
+        mediaID = _props$attributes.mediaID,
+        mediaURL = _props$attributes.mediaURL,
+        mediaALT = _props$attributes.mediaALT,
+        logoID = _props$attributes.logoID,
+        logoURL = _props$attributes.logoURL,
+        logoALT = _props$attributes.logoALT,
+        overlayColor = _props$attributes.overlayColor,
+        url = _props$attributes.url,
+        titleText = _props$attributes.titleText,
+        setAttributes = props.setAttributes;
+
+    var onChangeTitle = function onChangeTitle(value) {
+      setAttributes({
+        title: value
+      });
+    };
+
+    var onSelectMedia = function onSelectMedia(media) {
+      var thisURL = media.sizes['homepage-splash'].url ? media.sizes['homepage-splash'].url : media.url;
+      setAttributes({
+        mediaURL: thisURL,
+        mediaID: media.id,
+        mediaALT: media.alt
+      });
+    };
+
+    var onSelectLogo = function onSelectLogo(media) {
+      var thisURL = media.sizes['logo-list'].url ? media.sizes['logo-list'].url : media.url;
+      setAttributes({
+        logoURL: thisURL,
+        logoID: media.id,
+        logoALT: media.alt
+      });
+    };
+
+    var onOverlayColorChange = function onOverlayColorChange(newColor) {
+      setAttributes({
+        overlayColor: newColor
+      });
+    };
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Fragment, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(InspectorControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Panel, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelBody, {
+      title: "Splash CTA with Overlay Block Settings",
+      initialOpen: true
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelRow, null, __("Choose overlay colour")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelRow, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ColorPalette, {
+      value: overlayColor,
+      onChange: onOverlayColorChange
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelRow, null, __("Choose link destination")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelRow, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(URLInput, {
+      className: 'url-input',
+      value: url,
+      onChange: function onChange(url, post) {
+        return setAttributes({
+          url: url,
+          titleText: post && post.title || 'Click here'
+        });
+      }
+    }))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: className
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "overlay",
+      style: {
+        backgroundColor: overlayColor + 'e9'
+      }
+    }, !logoURL && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      tagName: "h2",
+      placeholder: __('Call to action text', 'tastydigital'),
+      value: title,
+      onChange: onChangeTitle,
+      allowedFormats: []
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(MediaUpload, {
+      onSelect: onSelectLogo,
+      allowedTypes: "image",
+      value: logoID,
+      render: function render(_ref) {
+        var open = _ref.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Button, {
+          className: logoID ? 'image-button logo-button' : 'button button-large',
+          onClick: open
+        }, !logoID ? __('Upload Logo', 'tastydigital') : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+          id: 'image-' + logoID,
+          src: logoURL,
+          alt: logoALT
+        }));
+      }
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "splash-image"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(MediaUpload, {
+      onSelect: onSelectMedia,
+      allowedTypes: "image",
+      value: mediaID,
+      render: function render(_ref2) {
+        var open = _ref2.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Button, {
+          className: mediaID ? 'image-button media-button' : 'button button-large',
+          onClick: open
+        }, !mediaID ? __('Upload Image', 'tastydigital') : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+          id: 'image-' + mediaID,
+          src: mediaURL,
+          alt: mediaALT
+        }));
+      }
+    }))));
+  },
+  save: function save(props) {
+    var className = props.className,
+        _props$attributes2 = props.attributes,
+        title = _props$attributes2.title,
+        mediaID = _props$attributes2.mediaID,
+        mediaURL = _props$attributes2.mediaURL,
+        mediaALT = _props$attributes2.mediaALT,
+        logoID = _props$attributes2.logoID,
+        logoURL = _props$attributes2.logoURL,
+        logoALT = _props$attributes2.logoALT,
+        overlayColor = _props$attributes2.overlayColor,
+        url = _props$attributes2.url,
+        titleText = _props$attributes2.titleText;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: className
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      href: url,
+      title: titleText
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "overlay opacity-90",
+      style: {
+        backgroundColor: overlayColor
+      }
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "overlay"
+    }, !logoURL && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      tagName: "h2",
+      value: title
+    }), logoURL && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      className: "logo-image",
+      src: logoURL,
+      alt: logoALT
+    })), mediaURL && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      className: "splash-image",
+      src: mediaURL,
+      alt: mediaALT
+    })));
+  }
+}));
+
+/***/ }),
+
+/***/ "./src/blocks/splash-box/index.js":
+/*!****************************************!*\
+  !*** ./src/blocks/splash-box/index.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/**
+ * Internal block libraries
+ */
+var __ = wp.i18n.__;
+var Fragment = wp.element.Fragment;
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$components = wp.components,
+    Button = _wp$components.Button,
+    Panel = _wp$components.Panel,
+    PanelBody = _wp$components.PanelBody,
+    PanelRow = _wp$components.PanelRow;
+var _wp$blockEditor = wp.blockEditor,
+    RichText = _wp$blockEditor.RichText,
+    InspectorControls = _wp$blockEditor.InspectorControls,
+    MediaUpload = _wp$blockEditor.MediaUpload,
+    ColorPalette = _wp$blockEditor.ColorPalette,
+    URLInput = _wp$blockEditor.URLInput;
+/* harmony default export */ __webpack_exports__["default"] = (registerBlockType('tastydigital/splash-box', {
+  title: __('Splash CTA'),
+  description: __('Big pic media, logo and link.'),
+  icon: 'cover-image',
+  category: 'layout',
+  styles: [{
+    name: 'default',
+    label: __('Default'),
+    isDefault: true
+  }, {
+    name: 'bordered',
+    label: __('Bordered')
+  }],
+  attributes: {
+    title: {
+      type: 'string',
+      source: 'text',
+      selector: 'h2'
+    },
+    mediaID: {
+      type: 'number'
+    },
+    mediaURL: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img.splash-image',
+      attribute: 'src'
+    },
+    mediaALT: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img.splash-image',
+      attribute: 'alt'
+    },
+    logoID: {
+      type: 'number'
+    },
+    logoURL: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img.logo-image',
+      attribute: 'src'
+    },
+    logoALT: {
+      type: 'string',
+      source: 'attribute',
+      selector: 'img.logo-image',
+      attribute: 'alt'
+    },
+    bgColor: {
+      type: 'string',
+      default: '#002A3D'
+    },
+    url: {
+      type: 'string',
+      source: 'attribute',
+      attribute: 'href',
+      selector: 'a'
+    }
+  },
+  example: {
+    attributes: {
+      title: __('Tasty Glutenberg', 'tastydigital'),
+      mediaURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2ChocolateChipCookies.jpg/320px-2ChocolateChipCookies.jpg'
+    }
+  },
+  supports: {
+    align: ['wide', 'full'],
+    html: false
+  },
+  edit: function edit(props) {
+    var className = props.className,
+        _props$attributes = props.attributes,
+        title = _props$attributes.title,
+        mediaID = _props$attributes.mediaID,
+        mediaURL = _props$attributes.mediaURL,
+        mediaALT = _props$attributes.mediaALT,
+        logoID = _props$attributes.logoID,
+        logoURL = _props$attributes.logoURL,
+        logoALT = _props$attributes.logoALT,
+        bgColor = _props$attributes.bgColor,
+        url = _props$attributes.url,
+        setAttributes = props.setAttributes;
+
+    var onChangeTitle = function onChangeTitle(value) {
+      setAttributes({
+        title: value
+      });
+    };
+
+    var onSelectMedia = function onSelectMedia(media) {
+      var thisURL = typeof media.sizes['homepage-splash'].url !== 'undefined' ? media.sizes['homepage-splash'].url : media.url;
+      setAttributes({
+        mediaURL: thisURL,
+        mediaID: media.id,
+        mediaALT: media.alt
+      });
+    };
+
+    var onSelectLogo = function onSelectLogo(media) {
+      var thisURL = typeof media.sizes['logo-list'].url !== 'undefined' ? media.sizes['logo-list'].url : media.url;
+      console.log(media);
+      setAttributes({
+        logoURL: thisURL,
+        logoID: media.id,
+        logoALT: media.alt
+      });
+    };
+
+    var onBackgroundColorChange = function onBackgroundColorChange(newColor) {
+      setAttributes({
+        bgColor: newColor
+      });
+    };
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Fragment, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(InspectorControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Panel, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelBody, {
+      title: "Splash CTA Block Settings",
+      initialOpen: true
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelRow, null, __("Choose background colour")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelRow, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ColorPalette, {
+      value: bgColor,
+      onChange: onBackgroundColorChange
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelRow, null, __("Choose link destination")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelRow, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(URLInput, {
+      className: 'url-input',
+      value: url,
+      onChange: function onChange(url, post) {
+        return setAttributes({
+          url: url,
+          titleText: post && post.title || 'Click here'
+        });
+      }
+    }))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: className
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "overlay",
+      style: {
+        backgroundColor: bgColor + 'e9'
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "splash-logo"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(MediaUpload, {
+      onSelect: onSelectLogo,
+      allowedTypes: "image",
+      value: logoID,
+      render: function render(_ref) {
+        var open = _ref.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Button, {
+          className: logoID ? 'image-button logo-button' : 'button button-large',
+          onClick: open
+        }, !logoID ? __('Upload Logo', 'tastydigital') : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+          id: 'image-' + logoID,
+          src: logoURL,
+          alt: logoALT
+        }));
+      }
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      tagName: "h2",
+      placeholder: __('Call to action text', 'tastydigital'),
+      value: title,
+      onChange: onChangeTitle,
+      allowedFormats: []
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "splash-image"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(MediaUpload, {
+      onSelect: onSelectMedia,
+      allowedTypes: "image",
+      value: mediaID,
+      render: function render(_ref2) {
+        var open = _ref2.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(Button, {
+          className: mediaID ? 'image-button media-button' : 'button button-large',
+          onClick: open
+        }, !mediaID ? __('Upload Image', 'tastydigital') : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+          id: 'image-' + mediaID,
+          src: mediaURL,
+          alt: mediaALT
+        }));
+      }
+    }))));
+  },
+  save: function save(props) {
+    var className = props.className,
+        _props$attributes2 = props.attributes,
+        title = _props$attributes2.title,
+        mediaID = _props$attributes2.mediaID,
+        mediaURL = _props$attributes2.mediaURL,
+        mediaALT = _props$attributes2.mediaALT,
+        logoID = _props$attributes2.logoID,
+        logoURL = _props$attributes2.logoURL,
+        logoALT = _props$attributes2.logoALT,
+        bgColor = _props$attributes2.bgColor,
+        url = _props$attributes2.url;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: className
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      href: url
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "overlay opacity-90",
+      style: {
+        backgroundColor: bgColor
+      }
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "overlay"
+    }, logoURL && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "splash-logo"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      className: "logo-image",
+      src: logoURL,
+      alt: logoALT
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      tagName: "h2",
+      value: title
+    })), mediaURL && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      className: "splash-image",
+      src: mediaURL,
+      alt: mediaALT
+    })));
+  }
+}));
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _blocks_splash_box__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blocks/splash-box */ "./src/blocks/splash-box/index.js");
+/* harmony import */ var _blocks_splash_box_overlay__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/splash-box-overlay */ "./src/blocks/splash-box-overlay/index.js");
+/* harmony import */ var _attributes_visible_on_mobile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./attributes/visible-on-mobile */ "./src/attributes/visible-on-mobile/index.js");
+/* harmony import */ var _attributes_constrain_inner_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./attributes/constrain-inner-container */ "./src/attributes/constrain-inner-container/index.js");
+/* harmony import */ var _attributes_flexible_group__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./attributes/flexible-group */ "./src/attributes/flexible-group/index.js");
+/* harmony import */ var _attributes_flexible_group__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_attributes_flexible_group__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _attributes_heading_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./attributes/heading-styles */ "./src/attributes/heading-styles/index.js");
+/* harmony import */ var _attributes_heading_styles__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_attributes_heading_styles__WEBPACK_IMPORTED_MODULE_5__);
+/**
+ * Internal dependencies
+ */
+// import './blocks/container';
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!******************************************!*\
+  !*** external {"this":["wp","element"]} ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = this["wp"]["element"]; }());
+
+/***/ })
+
+/******/ });
+//# sourceMappingURL=index.js.map
