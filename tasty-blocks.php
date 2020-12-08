@@ -17,6 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 function gluten_add_new_image_size() {
     add_image_size( 'logotype', 1200, 36, false );
+	add_image_size( 'homepage-splash', 1000, 1000, true );
 }
 add_action( 'after_setup_theme', 'gluten_add_new_image_size' );
 
