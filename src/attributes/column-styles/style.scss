@@ -2,17 +2,10 @@
 
 .wp-block-column.is-style-padded,
 .wp-block-columns.has-background > .wp-block-column {
-    padding: 60px 32px 28px;
+    padding: 32px;
 }
-.wp-block-columns.has-background > .wp-block-column {
-    &:last-of-type {
-        padding-right:64px;
-    } 
-    &:first-of-type {
-        padding-left:64px;
-    } 
-}
-@media only screen and (min-width : map-get($grid-breakpoints, "md")) and (max-width : map-get($grid-breakpoints, "xl")) {
+
+@media only screen and (min-width : map-get($grid-breakpoints, "md")) {
     .wp-block-column.is-style-padded,
     .wp-block-columns.has-background > .wp-block-column {
         padding: 42px 16px 14px;
@@ -27,6 +20,20 @@
     }
 }
 
+@media only screen and (min-width : map-get($grid-breakpoints, "xl")) {
+    .wp-block-column.is-style-padded,
+    .wp-block-columns.has-background > .wp-block-column {
+        padding: 60px 32px 28px;
+    }
+    .wp-block-columns.has-background > .wp-block-column {
+        &:last-of-type {
+            padding-right:64px;
+        } 
+        &:first-of-type {
+            padding-left:64px;
+        } 
+    }
+}
   
 .wp-block-column.is-style-tight, 
 .wp-block-columns.has-background > .wp-block-column.is-style-tight {
