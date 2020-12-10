@@ -1,3 +1,5 @@
+@import "../../config/vars";
+
 .wp-block-column.is-style-padded,
 .wp-block-columns.has-background > .wp-block-column {
     padding: 60px 32px 28px;
@@ -10,6 +12,22 @@
         padding-left:64px;
     } 
 }
+@media only screen and (min-width : map-get($grid-breakpoints, "md")) and (max-device-width : map-get($grid-breakpoints, "xl")) {
+    .wp-block-column.is-style-padded,
+    .wp-block-columns.has-background > .wp-block-column {
+        padding: 42px 16px 14px;
+    }
+    .wp-block-columns.has-background > .wp-block-column {
+        &:last-of-type {
+            padding-right:32px;
+        } 
+        &:first-of-type {
+            padding-left:32px;
+        } 
+    }
+}
+
+  
 .wp-block-column.is-style-tight, 
 .wp-block-columns.has-background > .wp-block-column.is-style-tight {
     padding: 0 !important;
