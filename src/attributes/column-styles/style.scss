@@ -4,7 +4,14 @@
 .wp-block-columns.has-background > .wp-block-column {
     padding: 32px;
 }
-
+.wp-block-columns.has-background > .wp-block-column {
+    &:last-of-type {
+        padding-top:16px;
+    } 
+    &:first-of-type {
+        padding-bottom:32px;
+    } 
+}
 @media only screen and (min-width : map-get($grid-breakpoints, "md")) {
     .wp-block-column.is-style-padded,
     .wp-block-columns.has-background > .wp-block-column {
