@@ -1,3 +1,5 @@
+@import "../../config/vars";
+
 .wp-block-tastydigital-splash-box {
   position: relative;
   > a {
@@ -47,6 +49,9 @@
     font-size:18px;
     text-transform: uppercase;
   }
+  &.dark-link h2 {
+	color:$blue;
+  }
   .splash-logo {
       float:left;
       height: 19px;
@@ -76,4 +81,7 @@
   text-align: center;
   background-color: #F5F5F5;
   min-width:100%;
+}
+.dark-link {
+    color:$blue;
 }
