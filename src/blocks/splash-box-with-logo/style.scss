@@ -25,7 +25,7 @@
         border-left: 16px solid #e4c220;
         position:absolute;
         right:12px;
-        top:15px;
+        top:16px;
         transform: translateX(0);
         transition: transform 0.3s;
     }
@@ -35,8 +35,8 @@
   }
   .overlay {
 	width: 100%;
-	padding: 13px 40px 13px 18px;
-	height:47px;
+	padding: 16px 40px 16px 18px;
+	height:52px;
     z-index: 2;
     position: relative;
   }
@@ -45,15 +45,23 @@
 	margin: 0;
 	color:#FFF;
     font-weight: 400;
-    text-align: center;
-    font-size: 21px;
-    line-height: 1;
-    text-transform: none;
+    text-align: right;
+    font-size:18px;
+    text-transform: uppercase;
   }
   &.dark-link h2 {
 	color:$blue;
   }
+  .splash-logo {
+      float:left;
+      height: 19px;
+      img {
+        height: 19px;
+        width: auto;
+      }
+  }
   .splash-holder {
+    border-bottom:7px solid #FFF;
     overflow: hidden;
     img {
         margin-top:-10px;
